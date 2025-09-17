@@ -1,0 +1,1236 @@
+[
+    {
+      "id": "scheme_001",
+      "name": "PM Kisan Samman Nidhi",
+      "ministry": "Agriculture",
+      "description": "Provides ₹6,000/year income support to small farmers",
+      "eligibility": {
+        "occupation": ["farmer"],
+        "land_holding_max": "2 hectares",
+        "exclusions": ["Income tax payers", "government employees"]
+      },
+      "benefits": "₹6,000 annually in 3 installments"
+    },
+    {
+      "id": "scheme_002",
+      "name": "PM Fasal Bima Yojana",
+      "ministry": "Agriculture",
+      "description": "Crop insurance against natural calamities",
+      "eligibility": {
+        "crop_types": ["food crops", "oil seeds", "horticulture"],
+        "season": ["kharif", "rabi"]
+      },
+      "benefits": "Premium subsidy up to 90%"
+    },
+    {
+      "id": "scheme_003",
+      "name": "Kisan Credit Card",
+      "ministry": "Agriculture",
+      "description": "Affordable credit for farmers",
+      "eligibility": {
+        "farmer_types": ["individual", "joint", "tenant"]
+      },
+      "benefits": "Up to ₹3 lakh at 4% interest"
+    },
+    {
+      "id": "scheme_004",
+      "name": "PM Matsya Sampada Yojana",
+      "ministry": "Fisheries",
+      "description": "Boost fish production and infrastructure",
+      "eligibility": {
+        "categories": ["fish farmers", "SHGs", "FPOs"]
+      },
+      "benefits": "50-75% subsidy for infrastructure"
+    },
+    {
+      "id": "scheme_005",
+      "name": "Ayushman Bharat PM-JAY",
+      "ministry": "Health",
+      "description": "Health cover of ₹5 lakh/year per family",
+      "eligibility": {
+        "based_on": "SECC 2011 data",
+        "auto_include": ["SC/ST", "manual scavengers"]
+      },
+      "benefits": "Cashless treatment at empaneled hospitals"
+    },
+    {
+      "id": "scheme_006",
+      "name": "PM Suraksha Bima Yojana",
+      "ministry": "Finance",
+      "description": "Accidental insurance cover",
+      "eligibility": {
+        "age": "18-70 years",
+        "bank_account": "required"
+      },
+      "benefits": "₹2 lakh cover for ₹20/year premium"
+    },
+    {
+      "id": "scheme_007",
+      "name": "PM Jeevan Jyoti Bima Yojana",
+      "ministry": "Finance",
+      "description": "Life insurance cover",
+      "eligibility": {
+        "age": "18-50 years",
+        "bank_account": "required"
+      },
+      "benefits": "₹2 lakh cover for ₹436/year"
+    },
+    {
+      "id": "scheme_008",
+      "name": "Atal Pension Yojana",
+      "ministry": "Finance",
+      "description": "Pension scheme for unorganized sector",
+      "eligibility": {
+        "age": "18-40 years",
+        "bank_account": "required"
+      },
+      "benefits": "Pension ₹1,000-5,000/month after 60"
+    },
+    {
+      "id": "scheme_009",
+      "name": "Sukanya Samriddhi Yojana",
+      "ministry": "Finance",
+      "description": "Savings scheme for girl child",
+      "eligibility": {
+        "beneficiary_age": "below 10 years",
+        "guardian": "parent/legal guardian"
+      },
+      "benefits": "7.6% interest + tax benefits"
+    },
+    {
+      "id": "scheme_010",
+      "name": "PM Awas Yojana (Urban)",
+      "ministry": "Housing",
+      "description": "Affordable housing in urban areas",
+      "eligibility": {
+        "income": ["EWS", "LIG"],
+        "house_ownership": "none"
+      },
+      "benefits": "Interest subsidy up to 6.5%"
+    },
+    {
+      "id": "scheme_011",
+      "name": "PM Awas Yojana (Gramin)",
+      "ministry": "Rural Development",
+      "description": "Houses for rural poor",
+      "eligibility": {
+        "based_on": "SECC 2011 data",
+        "priority": ["homeless", "kutcha house dwellers"]
+      },
+      "benefits": "₹1.2 lakh assistance in plains, ₹1.3 lakh in hills"
+    },
+    {
+      "id": "scheme_012",
+      "name": "Ujjwala Yojana",
+      "ministry": "Petroleum",
+      "description": "Free LPG connections to BPL women",
+      "eligibility": {
+        "gender": "female",
+        "BPL_status": "required"
+      },
+      "benefits": "Free connection + first refill"
+    },
+    {
+      "id": "scheme_013",
+      "name": "Saubhagya Yojana",
+      "ministry": "Power",
+      "description": "Free electricity connections",
+      "eligibility": {
+        "rural/urban": "both",
+        "household_type": "un-electrified"
+      },
+      "benefits": "Free last-mile connection"
+    },
+    {
+      "id": "scheme_014",
+      "name": "PM Jan Dhan Yojana",
+      "ministry": "Finance",
+      "description": "Zero-balance bank accounts",
+      "eligibility": {
+        "age": "10+ years",
+        "document": ["Aadhaar", "Voter ID"]
+      },
+      "benefits": "Rupay card + ₹2 lakh accident insurance"
+    },
+    {
+      "id": "scheme_015",
+      "name": "Stand-Up India",
+      "ministry": "Finance",
+      "description": "Loans for SC/ST/women entrepreneurs",
+      "eligibility": {
+        "category": ["SC", "ST", "women"],
+        "project_cost": "₹10 lakh-1 crore"
+      },
+      "benefits": "Bank loan with 85% guarantee"
+    },
+    {
+      "id": "scheme_016",
+      "name": "Mudra Yojana",
+      "ministry": "Finance",
+      "description": "Micro loans for small businesses",
+      "eligibility": {
+        "business_type": ["manufacturing", "trading", "services"]
+      },
+      "benefits": "Loans up to ₹10 lakh without collateral"
+    },
+    {
+      "id": "scheme_017",
+      "name": "PM SVANidhi",
+      "ministry": "Housing",
+      "description": "Street vendor loans",
+      "eligibility": {
+        "occupation": "street vending",
+        "vending_certificate": "required"
+      },
+      "benefits": "₹10,000 working capital loan"
+    },
+    {
+      "id": "scheme_018",
+      "name": "National Apprenticeship Scheme",
+      "ministry": "Skill Development",
+      "description": "Paid apprenticeship training",
+      "eligibility": {
+        "age": "16-24 years",
+        "education": ["ITI", "diploma", "graduate"]
+      },
+      "benefits": "Stipend + certification"
+    },
+    {
+      "id": "scheme_019",
+      "name": "PM Kaushal Vikas Yojana",
+      "ministry": "Skill Development",
+      "description": "Free skill training",
+      "eligibility": {
+        "age": "15-45 years",
+        "education": ["8th pass", "10th pass", "12th pass"]
+      },
+      "benefits": "Training + ₹8,000 reward"
+    },
+    {
+      "id": "scheme_020",
+      "name": "Mid-Day Meal Scheme",
+      "ministry": "Education",
+      "description": "Free lunch in government schools",
+      "eligibility": {
+        "student_status": "enrolled in govt school",
+        "class": "1-8"
+      },
+      "benefits": "450 calories + 12g protein daily"
+    },
+    {
+      "id": "scheme_021",
+      "name": "Beti Bachao Beti Padhao",
+      "ministry": "Women & Child",
+      "description": "Girl child welfare",
+      "eligibility": {
+        "gender": "female",
+        "age": "0-18 years"
+      },
+      "benefits": "Education support + Sukanya Samriddhi linkage"
+    },
+    {
+      "id": "scheme_022",
+      "name": "POSHAN Abhiyaan",
+      "ministry": "Women & Child",
+      "description": "Nutrition support",
+      "eligibility": {
+        "categories": ["pregnant women", "lactating mothers", "0-6 years children"]
+      },
+      "benefits": "Take-home rations + health checkups"
+    },
+    {
+      "id": "scheme_023",
+      "name": "PM Matru Vandana Yojana",
+      "ministry": "Women & Child",
+      "description": "Maternity benefit",
+      "eligibility": {
+        "gender": "female",
+        "pregnancy_status": "first live birth"
+      },
+      "benefits": "₹5,000 in 3 installments"
+    },
+    {
+      "id": "scheme_024",
+      "name": "One Nation One Ration Card",
+      "ministry": "Consumer Affairs",
+      "description": "Ration access anywhere in India",
+      "eligibility": {
+        "card_type": "NFSA ration card"
+      },
+      "benefits": "5kg foodgrains/person/month"
+    },
+    {
+      "id": "scheme_025",
+      "name": "PM Garib Kalyan Anna Yojana",
+      "ministry": "Consumer Affairs",
+      "description": "Free foodgrains",
+      "eligibility": {
+        "card_type": ["AAY", "PHH ration cards"]
+      },
+      "benefits": "5kg free rice/wheat per person"
+    },
+    {
+      "id": "scheme_026",
+      "name": "Jal Jeevan Mission",
+      "ministry": "Water Resources",
+      "description": "Tap water to every household",
+      "eligibility": {
+        "rural_households": "all"
+      },
+      "benefits": "55 liters/person/day potable water"
+    },
+    {
+      "id": "scheme_027",
+      "name": "Swachh Bharat Mission (Rural)",
+      "ministry": "Drinking Water",
+      "description": "Toilet construction subsidy",
+      "eligibility": {
+        "toilet_status": "none"
+      },
+      "benefits": "₹12,000 construction assistance"
+    },
+    {
+      "id": "scheme_028",
+      "name": "PM Ujjwala Yojana 2.0",
+      "ministry": "Petroleum",
+      "description": "LPG connection for migrant workers",
+      "eligibility": {
+        "migrant_status": "no permanent address"
+      },
+      "benefits": "Free stove + first refill"
+    },
+    {
+      "id": "scheme_029",
+      "name": "PM CARES for Children",
+      "ministry": "Social Justice",
+      "description": "Support for COVID-orphaned children",
+      "eligibility": {
+        "age": "0-18 years",
+        "parent_status": "COVID deceased"
+      },
+      "benefits": "₹10 lakh at 23 years + education"
+    },
+    {
+      "id": "scheme_030",
+      "name": "National Health Mission",
+      "ministry": "Health",
+      "description": "Free healthcare in rural areas",
+      "eligibility": {
+        "location": "rural",
+        "income": "all"
+      },
+      "benefits": "Free medicines + diagnostics"
+    },
+    {
+      "id": "scheme_031",
+      "name": "PM Vishwakarma Yojana",
+      "ministry": "MSME",
+      "description": "Support for traditional artisans",
+      "eligibility": {
+        "occupation": ["carpenter", "potter", "blacksmith", "tailor"]
+      },
+      "benefits": "₹1 lakh loan at 5% interest"
+    },
+    {
+      "id": "scheme_032",
+      "name": "Namo Drone Didi Scheme",
+      "ministry": "Agriculture",
+      "description": "Drones for women SHGs",
+      "eligibility": {
+        "group_type": "registered women SHG",
+        "land_holding": "minimum 5 acres"
+      },
+      "benefits": "80% subsidy on agricultural drones"
+    },
+    {
+      "id": "scheme_033",
+      "name": "PM PRANAM Yojana",
+      "ministry": "Agriculture",
+      "description": "Promote alternative fertilizers",
+      "eligibility": {
+        "farmer_status": "registered on e-NAM"
+      },
+      "benefits": "50% subsidy on organic inputs"
+    },
+    {
+      "id": "scheme_034",
+      "name": "NIRYAT Portal",
+      "ministry": "Commerce",
+      "description": "Export promotion",
+      "eligibility": {
+        "business_type": "MSME manufacturer"
+      },
+      "benefits": "Export credit at 4% interest"
+    },
+    {
+      "id": "scheme_035",
+      "name": "e-NAM",
+      "ministry": "Agriculture",
+      "description": "National agricultural market",
+      "eligibility": {
+        "seller_type": ["farmer", "FPO", "trader"]
+      },
+      "benefits": "Better price discovery"
+    },
+    {
+      "id": "scheme_036",
+      "name": "PM Gati Shakti",
+      "ministry": "Commerce",
+      "description": "Infrastructure development",
+      "eligibility": {
+        "project_size": "minimum ₹500 crore"
+      },
+      "benefits": "Fast-track clearances"
+    },
+    {
+      "id": "scheme_037",
+      "name": "Kerala Startup Mission",
+      "state": "Kerala",
+      "description": "Support for tech startups",
+      "eligibility": {
+        "business_age": "<3 years",
+        "innovation_score": ">60%"
+      },
+      "benefits": "₹10 lakh seed fund + incubation"
+    },
+    {
+      "id": "scheme_038",
+      "name": "Mukhyamantri Teerth Yatra Yojana",
+      "state": "Delhi",
+      "description": "Free pilgrimage for seniors",
+      "eligibility": {
+        "age": ">60 years",
+        "income": "<₹3 lakh/year"
+      },
+      "benefits": "All-expense paid religious tours"
+    },
+    {
+      "id": "scheme_039",
+      "name": "Kanya Sumangala Yojana",
+      "state": "Uttar Pradesh",
+      "description": "Girl child welfare scheme",
+      "eligibility": {
+        "gender": "female",
+        "family_income": "<₹3 lakh"
+      },
+      "benefits": "₹15,000 from birth to graduation"
+    },
+    {
+      "id": "scheme_040",
+      "name": "Amma Two Wheeler Scheme",
+      "state": "Tamil Nadu",
+      "description": "Subsidized scooters for women",
+      "eligibility": {
+        "gender": "female",
+        "education": ["8th pass", "10th pass"]
+      },
+      "benefits": "50% subsidy up to ₹25,000"
+    },
+    {
+      "id": "scheme_041",
+      "name": "Shravanbal Seva Rajya Nivrutti Yojana",
+      "state": "Maharashtra",
+      "description": "Pension for artistes",
+      "eligibility": {
+        "art_form": ["theater", "folk arts", "music"],
+        "experience": ">20 years"
+      },
+      "benefits": "₹5,000/month pension"
+    },
+    {
+      "id": "scheme_042",
+      "name": "YSR Cheyutha",
+      "state": "Andhra Pradesh",
+      "description": "Support for middle-aged women",
+      "eligibility": {
+        "gender": "female",
+        "age": "45-60 years",
+        "caste": ["SC", "ST", "BC", "minority"]
+      },
+      "benefits": "₹18,750/year for 4 years"
+    },
+    {
+      "id": "scheme_043",
+      "name": "Mukhyamantri Chhatravritti Yojana",
+      "state": "Bihar",
+      "description": "Scholarship for students",
+      "eligibility": {
+        "education": ["10th pass", "12th pass"],
+        "marks": ">75%"
+      },
+      "benefits": "₹10,000-25,000/year"
+    },
+    {
+      "id": "scheme_044",
+      "name": "Aarogya Karnataka",
+      "state": "Karnataka",
+      "description": "Health insurance for poor",
+      "eligibility": {
+        "income": "<₹2.5 lakh",
+        "residency": ">5 years"
+      },
+      "benefits": "₹1.5 lakh/year coverage"
+    },
+    {
+      "id": "scheme_045",
+      "name": "Mukhyamantri Krishi Ashirwad Yojana",
+      "state": "Jharkhand",
+      "description": "Support for small farmers",
+      "eligibility": {
+        "land_holding": "<2 acres",
+        "crop_type": ["paddy", "maize"]
+      },
+      "benefits": "₹5,000/acre/year"
+    },
+    {
+      "id": "scheme_046",
+      "name": "Kisan Rin Portal",
+      "ministry": "Agriculture",
+      "description": "Digital platform for farm loans",
+      "eligibility": {
+        "farmer_status": "registered on e-NAM"
+      },
+      "benefits": "Instant loan approval"
+    },
+    {
+      "id": "scheme_047",
+      "name": "Mukhyamantri Medhavi Vidyarthi Yojana",
+      "state": "Madhya Pradesh",
+      "category": "education",
+      "eligibility": {
+        "marks": ">85% in 12th",
+        "family_income": "<8 LPA"
+      },
+      "benefits": "₹5,000/month for college students"
+    },
+    {
+      "id": "scheme_048",
+      "name": "Rythu Bandhu",
+      "state": "Telangana",
+      "category": "agriculture",
+      "eligibility": {
+        "land_ownership": ">1 acre",
+        "crop_type": ["all"]
+      },
+      "benefits": "₹10,000/acre/year investment support"
+    },
+    {
+      "id": "scheme_049",
+      "name": "Awas Assam",
+      "state": "Assam",
+      "category": "housing",
+      "eligibility": {
+        "income": "<5 LPA",
+        "residency": ">10 years"
+      },
+      "benefits": "75% subsidy on house construction"
+    },
+    {
+      "id": "scheme_050",
+      "name": "Ayushman Arogya Mandir",
+      "category": "health",
+      "eligibility": {
+        "location": "rural/tribal areas"
+      },
+      "benefits": "Free OPD medicines + diagnostics"
+    },
+    {
+      "id": "scheme_051",
+      "name": "Niramaya Health Insurance",
+      "category": "disability",
+      "eligibility": {
+        "disability_percentage": ">40%"
+      },
+      "benefits": "₹1 lakh health cover for PwD"
+    },
+    {
+      "id": "scheme_052",
+      "name": "Ladli Behna Yojana",
+      "state": "Madhya Pradesh",
+      "category": "women",
+      "eligibility": {
+        "age": "21-60 years",
+        "family_income": "<2.5 LPA"
+      },
+      "benefits": "₹1,250/month financial aid"
+    },
+    {
+      "id": "scheme_053",
+      "name": "Savitribai Phule Scholarship",
+      "state": "Maharashtra",
+      "category": "education",
+      "eligibility": {
+        "gender": "female",
+        "caste": ["SC", "ST", "OBC"]
+      },
+      "benefits": "₹50,000 for higher education"
+    },
+    {
+      "id": "scheme_054",
+      "name": "Bhu-Aadhaar",
+      "category": "agriculture",
+      "eligibility": {
+        "land_record": "digitized"
+      },
+      "benefits": "Unique ID for farmland linking subsidies"
+    },
+    {
+      "id": "scheme_055",
+      "name": "PM Kisan Maan Dhan",
+      "category": "pension",
+      "eligibility": {
+        "age": "18-40 years",
+        "occupation": "farmer"
+      },
+      "benefits": "₹3,000/month after 60 years"
+    },
+    {
+      "id": "scheme_056",
+      "name": "SVANidhi Se Samriddhi",
+      "category": "urban",
+      "eligibility": {
+        "occupation": "street vendor",
+        "loan_taken": "PM SVANidhi"
+      },
+      "benefits": "Pension + insurance benefits"
+    },
+    {
+      "id": "scheme_057",
+      "name": "Startup India Seed Fund",
+      "category": "startup",
+      "eligibility": {
+        "dpiit_recognition": "yes",
+        "business_age": "<2 years"
+      },
+      "benefits": "₹20 lakh grant + ₹50 lakh investment"
+    },
+    {
+      "id": "scheme_058",
+      "name": "PVTG Development Mission",
+      "category": "tribal",
+      "eligibility": {
+        "tribe": "Particularly Vulnerable Tribal Group"
+      },
+      "benefits": "₹50,000 livelihood support"
+    },
+    {
+      "id": "scheme_059",
+      "name": "Aapda Rahat Yojana",
+      "state": "Uttarakhand",
+      "category": "disaster",
+      "eligibility": {
+        "disaster_affected": "official declaration"
+      },
+      "benefits": "₹4 lakh compensation"
+    },
+    {
+      "id": "scheme_060",
+      "name": "Gramin Gaurav Path",
+      "category": "infrastructure",
+      "eligibility": {
+        "village_population": "<2000"
+      },
+      "benefits": "Concrete roads in rural areas"
+    },
+    {
+      "id": "scheme_061",
+      "name": "Amrit Sarovar",
+      "category": "environment",
+      "eligibility": {
+        "land_availability": ">1 acre"
+      },
+      "benefits": "75% funding for water conservation"
+    },
+    {
+      "id": "scheme_062",
+      "name": "PM Vishwakarma Kaushal Samman",
+      "category": "skill",
+      "eligibility": {
+        "traditional_skill": ["carpentry", "pottery", "blacksmith"]
+      },
+      "benefits": "₹15,000 toolkit voucher"
+    },
+    {
+      "id": "scheme_063",
+      "name": {
+        "en": "Chief Minister's Breakfast Scheme",
+        "ta": "முதலமைச்சர் காலை உணவு திட்டம்"
+      },
+      "category": "education",
+      "description": "Free breakfast for school children",
+      "eligibility": {
+        "institution": "govt/aided schools",
+        "class": "1-5"
+      },
+      "benefits": "Nutritious meal (450 calories)"
+    },
+    {
+      "id": "scheme_064",
+      "name": {
+        "en": "Uzhavan Cash Assistance",
+        "ta": "உழவன் பண உதவி திட்டம்"
+      },
+      "category": "agriculture",
+      "description": "Financial aid for farmers",
+      "eligibility": {
+        "land_holding": "<5 acres",
+        "crops": ["paddy", "millets"]
+      },
+      "benefits": "₹5,000/acre/year"
+    },
+    {
+      "id": "scheme_065",
+      "name": {
+        "en": "Moovalur Ramamirtham Ammal Scheme",
+        "ta": "மூவலூர் ராமாமிர்தம் அம்மாள் திட்டம்"
+      },
+      "category": "women/education",
+      "description": "Financial assistance for girl students",
+      "eligibility": {
+        "gender": "female",
+        "education": ["11th", "12th", "college"],
+        "caste": ["all"]
+      },
+      "benefits": "₹1,000/month"
+    },
+    {
+      "id": "scheme_066",
+      "name": {
+        "en": "Kalaignar Magalir Urimai Thogai",
+        "ta": "கலைஞர் மகளிர் உரிமை தொகை"
+      },
+      "category": "women/welfare",
+      "description": "Monthly financial aid for women",
+      "eligibility": {
+        "gender": "female",
+        "age": ">21 years",
+        "family_income": "<2.4 LPA"
+      },
+      "benefits": "₹1,000/month"
+    },
+    {
+      "id": "scheme_067",
+      "name": {
+        "en": "Chief Minister's Comprehensive Health Insurance",
+        "ta": "முதலமைச்சர் முழுமையான சுகாதார காப்பீட்டுத் திட்டம்"
+      },
+      "category": "health",
+      "description": "Health cover for low-income families",
+      "eligibility": {
+        "income": "<1.5 LPA",
+        "family_card": "required"
+      },
+      "benefits": "₹5 lakh/year coverage"
+    },
+    {
+      "id": "scheme_068",
+      "name": {
+        "en": "Namma Veettu Vasathi Thittam",
+        "ta": "நம்ம வீட்டு வசதி திட்டம்"
+      },
+      "category": "housing",
+      "description": "Housing for urban poor",
+      "eligibility": {
+        "location": "urban slums",
+        "income": "<1.2 LPA"
+      },
+      "benefits": "300 sqft house"
+    },
+    {
+      "id": "scheme_069",
+      "name": {
+        "en": "Farmers Accident Relief Scheme",
+        "ta": "விவசாயி விபத்து நிவாரண திட்டம்"
+      },
+      "category": "agriculture",
+      "description": "Compensation for farm accidents",
+      "eligibility": {
+        "occupation": "farming",
+        "age": "18-70 years"
+      },
+      "benefits": "₹5 lakh accidental death coverage"
+    },
+    {
+      "id": "scheme_070",
+      "name": {
+        "en": "Adi Dravidar Housing Scheme",
+        "ta": "ஆதி திராவிடர் வீடமைப்புத் திட்டம்"
+      },
+      "category": "social_welfare",
+      "description": "Houses for SC/ST communities",
+      "eligibility": {
+        "caste": ["SC", "ST"],
+        "land_ownership": "none"
+      },
+      "benefits": "Full construction cost"
+    },
+    {
+      "id": "scheme_071",
+      "name": {
+        "en": "Free Laptop Scheme",
+        "ta": "இலவச லேப்டாப் திட்டம்"
+      },
+      "category": "education",
+      "description": "Laptops for college students",
+      "eligibility": {
+        "education": ["12th passed", "college"],
+        "marks": ">80% in 12th"
+      },
+      "benefits": "Branded laptop + warranty"
+    },
+    {
+      "id": "scheme_072",
+      "name": {
+        "en": "Fishermen Accident Relief",
+        "ta": "மீனவர் விபத்து நிவாரணத் திட்டம்"
+      },
+      "category": "fisheries",
+      "description": "Support for fishing community",
+      "eligibility": {
+        "occupation": "fisherman",
+        "registration": "cooperative society member"
+      },
+      "benefits": "₹10 lakh for sea accidents"
+    },
+    {
+      "id": "scheme_073",
+      "name": {
+        "en": "Green House Scheme",
+        "ta": "பசுமை வீடு திட்டம்"
+      },
+      "category": "environment",
+      "description": "Eco-friendly housing",
+      "eligibility": {
+        "income": "<75,000/year",
+        "location": "rural"
+      },
+      "benefits": "75% subsidy on solar-powered houses"
+    },
+    {
+      "id": "scheme_074",
+      "name": "SpaceTech Startup Fund",
+      "ministry": "Department of Space",
+      "description": "Funding for private space startups",
+      "eligibility": {
+        "sector": ["satellite tech", "launch vehicles", "space analytics"],
+        "startup_age": "<5 years"
+      },
+      "benefits": "₹10 crore grant + ISRO mentorship"
+    },
+    {
+      "id": "scheme_075",
+      "name": "Quantum Computing Mission",
+      "ministry": "MeitY",
+      "description": "Develop indigenous quantum computers",
+      "eligibility": {
+        "entity_type": ["research institutes", "tech startups"],
+        "expertise": "quantum physics"
+      },
+      "benefits": "₹5,000 crore funding pool"
+    },
+    {
+      "id": "scheme_076",
+      "name": "Agniveer Tech Upgrade Scheme",
+      "ministry": "Defense",
+      "description": "Upskilling program for ex-Agniveers",
+      "eligibility": {
+        "service_duration": "4+ years",
+        "discharge_status": "honorable"
+      },
+      "benefits": "₹5 lakh skill voucher + guaranteed interviews"
+    },
+    {
+      "id": "scheme_077",
+      "name": "AI for Precision Farming",
+      "ministry": "Agriculture",
+      "description": "IoT sensors and AI for small farms",
+      "eligibility": {
+        "land_size": "<2 hectares",
+        "crop_type": ["cash crops", "horticulture"]
+      },
+      "benefits": "90% subsidy on smart farming kits"
+    },
+    {
+      "id": "scheme_078",
+      "name": "Drone Kisan Yojana 2.0",
+      "ministry": "Agriculture",
+      "description": "Advanced drones for farm monitoring",
+      "eligibility": {
+        "farming_cooperative": "registered",
+        "land_pooling": ">10 acres"
+      },
+      "benefits": "75% subsidy on agricultural drones"
+    },
+    {
+      "id": "scheme_079",
+      "name": "e-Sanjeevani Plus",
+      "ministry": "Health",
+      "description": "AI-powered telemedicine in rural PHCs",
+      "eligibility": {
+        "facility_type": ["PHC", "CHC"],
+        "location": ["aspirational districts"]
+      },
+      "benefits": "₹50 lakh equipment grant per center"
+    },
+    {
+      "id": "scheme_080",
+      "name": "Genome India Project",
+      "ministry": "Biotechnology",
+      "description": "Genetic mapping for personalized medicine",
+      "eligibility": {
+        "research_institute": "ICMR-recognized",
+        "ethics_clearance": "required"
+      },
+      "benefits": "Full genome sequencing at ₹5,000"
+    },
+    {
+      "id": "scheme_081",
+      "name": "Digital Gurukul",
+      "ministry": "Education",
+      "description": "VR classrooms for STEM education",
+      "eligibility": {
+        "school_type": ["govt", "govt-aided"],
+        "class": ["9-12"]
+      },
+      "benefits": "10 VR stations per school"
+    },
+    {
+      "id": "scheme_082",
+      "name": "Bharat Coding Mission",
+      "ministry": "Education",
+      "description": "Mandatory coding from Class 6",
+      "eligibility": {
+        "school_boards": ["CBSE", "State Boards"]
+      },
+      "benefits": "Teacher training + Raspberry Pi kits"
+    },
+    {
+      "id": "scheme_083",
+      "name": "Green Hydrogen Highway",
+      "ministry": "Petroleum",
+      "description": "H2 fuel stations along golden quadrilateral",
+      "eligibility": {
+        "location": "NH routes",
+        "land_availability": ">2 acres"
+      },
+      "benefits": "₹20 crore subsidy per station"
+    },
+    {
+      "id": "scheme_084",
+      "name": "Plastic Credit Scheme",
+      "ministry": "Environment",
+      "description": "Tradable credits for plastic waste",
+      "eligibility": {
+        "waste_processors": "registered",
+        "capacity": ">5 tons/day"
+      },
+      "benefits": "₹50/kg credit value"
+    },
+    {
+      "id": "scheme_085",
+      "name": "Van Dhan 2.0",
+      "ministry": "Tribal Affairs",
+      "description": "Blockchain for tribal produce tracking",
+      "eligibility": {
+        "tribal_group": "PVTG recognized",
+        "product": ["forest honey", "medicinal plants"]
+      },
+      "benefits": "Direct global market access"
+    },
+    {
+      "id": "scheme_086",
+      "name": "Ropeway Revolution",
+      "ministry": "Road Transport",
+      "description": "Cable cars for hilly areas",
+      "eligibility": {
+        "terrain": ["hills", "valleys"],
+        "population": "50,000+"
+      },
+      "benefits": "VGF up to 60%"
+    },
+    {
+      "id": "scheme_087",
+      "name": "Tech Sakhi",
+      "ministry": "Women & Child",
+      "description": "All-women tech incubators",
+      "eligibility": {
+        "gender": "female",
+        "team_composition": "100% women"
+      },
+      "benefits": "₹25 lakh seed fund + AWS credits"
+    },
+    {
+      "id": "scheme_088",
+      "name": "BharatGPT Initiative",
+      "ministry": "MeitY",
+      "description": "Indian LLM for 22 scheduled languages",
+      "eligibility": {
+        "developers": ["IITs", "Indian startups"],
+        "language_coverage": ">10 Indian languages"
+      },
+      "benefits": "₹100 crore compute grant"
+    },
+    {
+      "id": "scheme_089",
+      "name": "Aapda Mitra AI",
+      "ministry": "Home Affairs",
+      "description": "AI for disaster prediction",
+      "eligibility": {
+        "state_dr": "high-risk zones",
+        "data_sharing": "real-time sensors"
+      },
+      "benefits": "Early warning systems"
+    },
+    {
+      "id": "scheme_090",
+      "name": "Antyodaya Export Corridors",
+      "ministry": "Commerce",
+      "description": "Dedicated logistics for MSME exports",
+      "eligibility": {
+        "turnover": "₹5-50 crore",
+        "export_potential": "product evaluation"
+      },
+      "benefits": "80% freight subsidy"
+    },
+    {
+      "id": "scheme_090",
+      "name": "Antyodaya Export Corridors",
+      "ministry": "Commerce",
+      "description": "Dedicated logistics for MSME exports",
+      "eligibility": {
+        "turnover": "₹5-50 crore",
+        "export_potential": "product evaluation"
+      },
+      "benefits": "80% freight subsidy"
+    },
+    {
+      "id": "scheme_091",
+      "name": "PM Digital Farmer Marketplace",
+      "ministry": "Agriculture",
+      "description": "Online platform for farmers to sell produce directly",
+      "eligibility": {
+        "farmer_status": "registered on e-NAM",
+        "produce": ["grains", "vegetables", "fruits"]
+      },
+      "benefits": "Zero commission sales + logistics support"
+    },
+    {
+      "id": "scheme_092",
+      "name": "Tamil Nadu Smart Village Initiative",
+      "state": "Tamil Nadu",
+      "category": "rural development",
+      "description": "Digital infrastructure for rural Tamil Nadu",
+      "eligibility": {
+        "village_population": "<5000",
+        "panchayat_status": "registered"
+      },
+      "benefits": "Free Wi-Fi + solar streetlights"
+    },
+    {
+      "id": "scheme_093",
+      "name": "PM Green Energy Farmer Subsidy",
+      "ministry": "Renewable Energy",
+      "description": "Subsidies for solar pumps and wind turbines",
+      "eligibility": {
+        "occupation": "farmer",
+        "land_holding": "<5 hectares"
+      },
+      "benefits": "75% subsidy on renewable energy equipment"
+    },
+    {
+      "id": "scheme_094",
+      "name": "Tamil Nadu Women Tech Accelerator",
+      "state": "Tamil Nadu",
+      "category": "women/startup",
+      "description": "Support for women-led tech startups",
+      "eligibility": {
+        "gender": "female",
+        "business_age": "<3 years"
+      },
+      "benefits": "₹15 lakh grant + mentorship"
+    },
+    {
+      "id": "scheme_095",
+      "name": "National AI Healthcare Network",
+      "ministry": "Health",
+      "description": "AI-driven diagnostics in public hospitals",
+      "eligibility": {
+        "hospital_type": ["district", "PHC"],
+        "location": "all India"
+      },
+      "benefits": "Free AI diagnostic tools + training"
+    },
+    {
+      "id": "scheme_096",
+      "name": "Tamil Nadu Coastal Livelihood Program",
+      "state": "Tamil Nadu",
+      "category": "fisheries",
+      "description": "Sustainable income for coastal communities",
+      "eligibility": {
+        "occupation": ["fishermen", "fish vendors"],
+        "location": "coastal districts"
+      },
+      "benefits": "₹50,000 loan + skill training"
+    },
+    {
+      "id": "scheme_097",
+      "name": "PM Urban Mobility Scheme",
+      "ministry": "Urban Development",
+      "description": "Electric buses and metro expansion",
+      "eligibility": {
+        "city_population": ">1 million",
+        "state_contribution": "20%"
+      },
+      "benefits": "50% funding for EV infrastructure"
+    },
+    {
+      "id": "scheme_098",
+      "name": "Tamil Nadu Student Innovation Fund",
+      "state": "Tamil Nadu",
+      "category": "education",
+      "description": "Grants for student-led innovations",
+      "eligibility": {
+        "education": ["college", "university"],
+        "project_type": "prototype-ready"
+      },
+      "benefits": "₹2 lakh per project"
+    },
+    {
+      "id": "scheme_099",
+      "name": "National Rural Broadband Mission",
+      "ministry": "Telecommunications",
+      "description": "High-speed internet for rural India",
+      "eligibility": {
+        "location": "rural",
+        "panchayat_status": "unconnected"
+      },
+      "benefits": "Free installation + 1 year subscription"
+    },
+    {
+      "id": "scheme_100",
+      "name": "Tamil Nadu Agri-Tech Incubation Scheme",
+      "state": "Tamil Nadu",
+      "category": "agriculture",
+      "description": "Support for agri-tech startups",
+      "eligibility": {
+        "business_focus": ["precision farming", "drones"],
+        "startup_age": "<2 years"
+      },
+      "benefits": "₹25 lakh seed fund + lab access"
+    },
+    {
+      "id": "scheme_101",
+      "name": "PM Skill 2.0 Yojana",
+      "ministry": "Skill Development",
+      "description": "Advanced skill training for youth",
+      "eligibility": {
+        "age": "18-35 years",
+        "education": "10th pass"
+      },
+      "benefits": "Free training + ₹10,000 stipend"
+    },
+    {
+      "id": "scheme_102",
+      "name": "Tamil Nadu Green Transport Scheme",
+      "state": "Tamil Nadu",
+      "category": "environment",
+      "description": "Subsidies for electric vehicles",
+      "eligibility": {
+        "vehicle_type": ["two-wheeler", "three-wheeler"],
+        "residency": "Tamil Nadu"
+      },
+      "benefits": "30% subsidy up to ₹50,000"
+    },
+    {
+      "id": "scheme_103",
+      "name": "National Water Harvesting Initiative",
+      "ministry": "Water Resources",
+      "description": "Rainwater harvesting in drought-prone areas",
+      "eligibility": {
+        "location": "water-scarce districts",
+        "community_participation": "required"
+      },
+      "benefits": "80% funding for harvesting structures"
+    },
+    {
+      "id": "scheme_104",
+      "name": "Tamil Nadu Handloom Revival Program",
+      "state": "Tamil Nadu",
+      "category": "MSME",
+      "description": "Support for traditional weavers",
+      "eligibility": {
+        "occupation": "handloom weaver",
+        "cooperative": "registered"
+      },
+      "benefits": "₹1 lakh loan + marketing support"
+    },
+    {
+      "id": "scheme_105",
+      "name": "PM Cyber Security Training",
+      "ministry": "MeitY",
+      "description": "Cybersecurity skills for professionals",
+      "eligibility": {
+        "occupation": ["IT professionals", "govt employees"],
+        "certification": "basic IT knowledge"
+      },
+      "benefits": "Free course + certification"
+    },
+    {
+      "id": "scheme_106",
+      "name": "Tamil Nadu Rural Health Outreach",
+      "state": "Tamil Nadu",
+      "category": "health",
+      "description": "Mobile health units for rural areas",
+      "eligibility": {
+        "location": "rural Tamil Nadu",
+        "population": "<2000"
+      },
+      "benefits": "Free checkups + medicines"
+    },
+    {
+      "id": "scheme_107",
+      "name": "National Tribal Entrepreneurship Fund",
+      "ministry": "Tribal Affairs",
+      "description": "Loans for tribal micro-businesses",
+      "eligibility": {
+        "category": "ST",
+        "business_size": "micro"
+      },
+      "benefits": "₹5 lakh loan at 3% interest"
+    },
+    {
+      "id": "scheme_108",
+      "name": "Tamil Nadu Eco-Tourism Promotion",
+      "state": "Tamil Nadu",
+      "category": "tourism",
+      "description": "Boost eco-friendly tourism",
+      "eligibility": {
+        "location": ["hill stations", "wildlife areas"],
+        "business_type": "tour operator"
+      },
+      "benefits": "₹10 lakh grant + promotion"
+    },
+    {
+      "id": "scheme_109",
+      "name": "PM Clean Air City Program",
+      "ministry": "Environment",
+      "description": "Reduce urban air pollution",
+      "eligibility": {
+        "city_type": "tier-1/tier-2",
+        "AQI": ">200"
+      },
+      "benefits": "₹100 crore per city for mitigation"
+    },
+    {
+      "id": "scheme_110",
+      "name": "Tamil Nadu Senior Citizen Care Scheme",
+      "state": "Tamil Nadu",
+      "category": "social welfare",
+      "description": "Healthcare and pension for seniors",
+      "eligibility": {
+        "age": ">60 years",
+        "income": "<₹2 lakh/year"
+      },
+      "benefits": "₹2,000/month + free health camps"
+    }
+  ]
