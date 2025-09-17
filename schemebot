@@ -1,0 +1,209 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          Schemebot
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Schemebot Flask API
+# Description:       Runs the Schemebot Flask API with Gunicorn optimized for low-memory systems
+### END INIT INFO
+
+DESC="Schemebot API"
+NAME=Schemebot
+DIR=/home/942003san/htdocs
+PIDFILE=/var/run/$NAME.pid
+LOGDIR=/var/log/schemebot
+SCRIPTNAME=/etc/init.d/$NAME
+GUNICORN=/home/942003san/htdocs/venv/bin/gunicorn
+GUNICORN_ARGS="--workers 1 --worker-class gthread --threads 2 --bind unix:/tmp/schemebot.sock --access-logfile $LOGDIR/gunicorn_access.log --error-logfile $LOGDIR/gunicorn_error.log --timeout 15 --log-level warning wsgi:app"
+USER=942003san
+GROUP=www-data
+STOP_TIMEOUT=15
+
+# Exit codes:
+# 0: Success
+# 1: General error
+# 2: Invalid usage
+# 3: Service not running
+# 4: Service already running
+# 5: Insufficient memory
+
+# Function to log messages
+log_message() {
+    echo "$1"
+    logger -t "$NAME" "$1"
+}
+
+# Function to check available memory
+check_memory() {
+    FREE_MEM=$(free -m | awk '/Mem:/ {print $4}')
+    if [ "$FREE_MEM" -lt 200 ]; then
+        log_message "Insufficient memory ($FREE_MEM MB free). At least 200 MB required."
+        exit 5
+    fi
+}
+
+# Function to check if process is running
+check_pid() {
+    [ -f "$PIDFILE" ] || return 1
+    PID=$(cat "$PIDFILE")
+    ps -p "$PID" > /dev/null 2>&1
+    return $?
+}
+
+# Function to clean stale PID file
+clean_pid() {
+    if [ -f "$PIDFILE" ]; then
+        if ! check_pid; then
+            log_message "Removing stale PID file $PIDFILE"
+            rm -f "$PIDFILE"
+        else
+            log_message "Service is already running with PID $(cat $PIDFILE)"
+            exit 4
+        fi
+    fi
+}
+
+case "$1" in
+start)
+    log_message "Starting $DESC"
+    # Check memory availability
+    check_memory
+    # Check if service is already running
+    if check_pid; then
+        log_message "$NAME is already running (PID: $(cat $PIDFILE))"
+        exit 4
+    fi
+
+    # Ensure log directory exists
+    mkdir -p "$LOGDIR"
+    chown "$USER:$GROUP" "$LOGDIR"
+    chmod 750 "$LOGDIR"
+
+    # Create log files if they don't exist
+    for log in gunicorn_access.log gunicorn_error.log; do
+        [ -f "$LOGDIR/$log" ] || touch "$LOGDIR/$log"
+        chown "$USER:$GROUP" "$LOGDIR/$log"
+        chmod 640 "$LOGDIR/$log"
+    done
+
+    # Clean up stale socket
+    [ -S /tmp/Schemebot.sock ] && rm -f /tmp/Schemebot.sock
+
+    # Start Gunicorn
+    if start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec "$GUNICORN" --background --make-pidfile --chuid "$USER:$GROUP" --chdir "$DIR" -- $GUNICORN_ARGS; then
+        log_message "$NAME started"
+        exit 0
+    else
+        log_message "Failed to start $NAME"
+        rm -f "$PIDFILE"
+        exit 1
+    fi
+    ;;
+stop)
+    log_message "Stopping $DESC"
+    if ! check_pid; then
+        log_message "$NAME is not running"
+        rm -f "$PIDFILE"
+        exit 3
+    fi
+
+    if start-stop-daemon --stop --quiet --retry=TERM/$STOP_TIMEOUT/KILL/5 --pidfile "$PIDFILE"; then
+        log_message "$NAME stopped"
+        rm -f "$PIDFILE"
+        [ -S /tmp/Schemebot.sock ] && rm -f /tmp/Schemebot.sock
+        exit 0
+    else
+        log_message "Failed to stop $NAME"
+        exit 1
+    fi
+    ;;
+force-stop)
+    log_message "Forcefully stopping $DESC"
+    if ! check_pid; then
+        log_message "$NAME is not running"
+        rm -f "$PIDFILE"
+        exit 3
+    fi
+
+    PID=$(cat "$PIDFILE")
+    kill -9 "$PID" 2>/dev/null
+    rm -f "$PIDFILE"
+    [ -S /tmp/Schemebot.sock ] && rm -f /tmp/Schemebot.sock
+    log_message "$NAME forcefully stopped"
+    exit 0
+    ;;
+reload)
+    log_message "Reloading $DESC"
+    if ! check_pid; then
+        log_message "$NAME is not running"
+        exit 3
+    fi
+
+    PID=$(cat "$PIDFILE")
+    if kill -HUP "$PID" 2>/dev/null; then
+        log_message "$NAME reloaded"
+        exit 0
+    else
+        log_message "Failed to reload $NAME"
+        exit 1
+    fi
+    ;;
+restart)
+    log_message "Restarting $DESC"
+    if check_pid; then
+        if ! start-stop-daemon --stop --quiet --retry=TERM/$STOP_TIMEOUT/KILL/5 --pidfile "$PIDFILE"; then
+            log_message "Failed to stop $NAME"
+            exit 1
+        fi
+        rm -f "$PIDFILE"
+        [ -S /tmp/Schemebot.sock ] && rm -f /tmp/Schemebot.sock
+    fi
+
+
+    check_memory
+
+
+    mkdir -p "$LOGDIR"
+    chown "$USER:$GROUP" "$LOGDIR"
+    chmod 750 "$LOGDIR"
+
+    # Create log files if they don't exist
+    for log in gunicorn_access.log gunicorn_error.log; do
+        [ -f "$LOGDIR/$log" ] || touch "$LOGDIR/$log"
+        chown "$USER:$GROUP" "$LOGDIR/$log"
+        chmod 640 "$LOGDIR/$log"
+    done
+
+    # Start Gunicorn
+    if start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec "$GUNICORN" --background --make-pidfile --chuid "$USER:$GROUP" --chdir "$DIR" -- $GUNICORN_ARGS; then
+        log_message "$NAME restarted"
+        exit 0
+    else
+        log_message "Failed to start $NAME"
+        rm -f "$PIDFILE"
+        exit 1
+    fi
+    ;;
+status)
+    if check_pid; then
+        PID=$(cat "$PIDFILE")
+        log_message "$NAME is running (PID: $PID)"
+        [ -S /tmp/Schemebot.sock ] && log_message "Socket /tmp/Schemebot.sock exists"
+        exit 0
+    elif [ -f "$PIDFILE" ]; then
+        log_message "$NAME is not running, but PID file exists"
+        exit 1
+    else
+        log_message "$NAME is not running"
+        exit 3
+    fi
+    ;;
+*)
+    echo "Usage: $SCRIPTNAME {start|stop|force-stop|reload|restart|status}" >&2
+    exit 2
+    ;;
+esac
+
+exit 0
