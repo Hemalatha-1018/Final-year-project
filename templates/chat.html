@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchemeBot AI Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        :root {
+            --clr-container-bg: rgba(255, 255, 255, 0.1);
+            --clr-container-border: rgba(255, 255, 255, 0.2);
+            --clr-buttons-bg: rgba(255, 255, 255, 0.2);
+            --clr-highlight: #fff;
+            --clr-btn-text: #111;
+            --clr-input: #fff;
+            --clr-input-border: #fff;
+            --clr-input-placeholder: #fff;
+            --clr-submit-bg: #fff;
+            --clr-submit-text: #111;
+            --clr-terms: #fff;
+            --clr-terms-link: #aad8d3;
+            --box-shadow-buttons: 0 4px 10px 6px rgba(255, 255, 255, 0.15);
+            --box-shadow-submit: 0 4px 55px rgba(255, 255, 255, 0.2);
+            --bg-body-gradient: linear-gradient(to right, #155799, #159957);
+            --backdrop-form: blur(19px);
+            --clr-bot-bubble: rgba(255, 255, 255, 0.15);
+            --clr-user-bubble: #155799;
+            --clr-chat-bg: rgba(255, 255, 255, 0.05);
+            --clr-sidebar-bg: rgba(255, 255, 255, 0.15);
+            --clr-webkit-scrollbar: rgba(255, 255, 255, 0.3);
+            --clr-spinner: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: var(--bg-body-gradient);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            backdrop-filter: brightness(0.9);
+            z-index: -1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--clr-sidebar-bg);
+            backdrop-filter: var(--backdrop-form);
+            border-right: 1px solid var(--clr-container-border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .sidebar-header h2 {
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav ul li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-nav ul li a {
+            color: var(--clr-terms);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 0.8rem;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+
+        .sidebar-nav ul li a:hover {
+            background-color: var(--clr-buttons-bg);
+            color: white;
+        }
+
+        .sidebar-nav ul li a svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .chat-container {
+            flex: 1;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: var(--clr-container-bg);
+            border: 1px solid var(--clr-container-border);
+            backdrop-filter: var(--backdrop-form);
+            border-radius: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--clr-container-border);
+        }
+
+        .chat-header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .chat-header h2 {
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .chat-header buttonAlternative Markdown Rendering and Compiling Errors in SchemeBot AI Assistant Webpage {
+            background: var(--clr-buttons-bg);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .chat-header button:hover {
+            background: var(--clr-user-bubble);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: var(--clr-chat-bg);
+            border-radius: 0.8rem;
+            margin: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: var(--clr-webkit-scrollbar);
+            border-radius: 20px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-bot {
+            align-items: flex-start;
+        }
+
+        .message-user {
+            align-items: flex-end;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 1rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        .bot-message {
+            background-color: var(--clr-bot-bubble);
+            border-bottom-left-radius: 0.2rem;
+        }
+
+        .user-message {
+            background-color: var(--clr-user-bubble);
+            border-bottom-right-radius: 0.2rem;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 3px;
+        }
+
+        .chat-input {
+            display: flex;
+            align-items: center;
+            background-color: var(--clr-chat-bg);
+            border-radius: 2rem;
+            padding: 10px 15px;
+            margin: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--clr-input);
+            padding: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .chat-input input::placeholder {
+            color: var(--clr-input-placeholder);
+            opacity: 0.7;
+        }
+
+        .chat-input button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            transition: transform 0.2s;
+        }
+
+        .chat-input button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-header button#clear-chat-btn {
+            background: var(--clr-buttons-bg);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .chat-header button#clear-chat-btn:hover {
+            background: var(--clr-user-bubble);
+        }
+
+        .typing-indicator {
+            display: flex;
+            padding: 10px 15px;
+            background-color: var(--clr-bot-bubble);
+            border-radius: 1rem;
+            width: fit-content;
+            margin-bottom: 15px;
+        }
+
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: white;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            opacity: 0.4;
+        }
+
+        .typing-indicator span:nth-child(1) {
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation: typing 1s infinite 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation: typing 1s infinite 0.4s;
+        }
+
+        @keyframes typing {
+            0% {
+                opacity: 0.4;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(-3px);
+            }
+
+            100% {
+                opacity: 0.4;
+                transform: translateY(0);
+            }
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-reply {
+            background-color: var(--clr-buttons-bg);
+            color: white;
+            border: none;
+            border-radius: 1rem;
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .quick-reply:hover {
+            background-color: var(--clr-user-bubble);
+        }
+
+        .spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--clr-spinner);
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--clr-container-border);
+            }
+
+            .chat-container {
+                margin: 20px;
+                width: calc(100% - 40px);
+            }
+        }
+
+        .markdown-content {
+            line-height: 1.6;
+        }
+
+        .markdown-content h1,
+        .markdown-content h2,
+        .markdown-content h3,
+        .markdown-content h4,
+        .markdown-content h5,
+        .markdown-content h6 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .markdown-content h1 {
+            font-size: 1.2rem;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.1rem;
+        }
+
+        .markdown-content h3 {
+            font-size: 1rem;
+        }
+
+        .markdown-content p {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+            margin: 10px 0 10px 25px;
+            padding-left: 0;
+            color: white;
+        }
+
+        .markdown-content ul {
+            list-style-type: disc !important;
+        }
+
+        .markdown-content ul ul {
+            list-style-type: circle !important;
+            margin-left: 20px;
+        }
+
+        .markdown-content li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 5px;
+        }
+
+        .markdown-content a {
+            color: var(--clr-terms-link);
+            text-decoration: underline;
+        }
+
+        .markdown-content a:hover {
+            color: var(--clr-highlight);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712104.png" alt="SchemeBot">
+            <h2>SchemeBot</h2>
+        </div>
+        <div class="sidebar-nav">
+            <ul>
+                <li><a href="/chat">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Chat
+                    </a></li>
+                <li><a href="/profile">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Profile
+                    </a></li>
+                <li><a href="/complaint">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Complaint
+                    </a></li>
+                <li><a href="/logout">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9"
+                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M16 17L21 12L16 7" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M21 12H9" stroke="white" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Logout
+                    </a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <div style="display: flex; align-items: center;">
+                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712104.png" alt="SchemeBot">
+                <h2>SchemeBot Assistant</h2>
+            </div>
+            <button id="clear-chat-btn">Clear Chat</button>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            {% if chat_history %}
+            {% for message in chat_history %}
+            <div class="message message-{{ 'user' if message.is_user else 'bot' }}">
+                <div
+                    class="message-content {{ 'user-message' if message.is_user else 'bot-message' }} markdown-content">
+                    {{ message.message | safe }}
+                </div>
+                <div class="message-time">{{ message.timestamp.strftime('%H:%M') }}</div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="message message-bot">
+                <div class="message-content bot-message markdown-content">
+                    Hello! I'm SchemeBot, your AI assistant for finding Indian government schemes. How can I help you
+                    today?
+                </div>
+                <div class="message-time">Just now</div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message here..." autocomplete="off">
+            <button id="send-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13" stroke="white" stroke-width="2 " stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <div class="spinner" id="send-spinner"></div>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.10/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://js.puter.com/v2/"></script>
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const sendSpinner = document.getElementById('send-spinner');
+        const clearChatBtn = document.getElementById('clear-chat-btn');
+
+        // Initialize Showdown converter with enhanced configuration
+        const converter = new showdown.Converter({
+            ghCompatibleHeaderId: true,
+            tables: true,
+            tasklists: true,
+            simplifiedAutoLink: true,
+            parseImgDimensions: true,
+            simpleLineBreaks: true,
+            openLinksInNewWindow: true,
+            strikethrough: true,
+            emoji: true,
+            completeHTMLDocument: false,
+            requireSpaceBeforeHeadingText: true
+        });
+
+        // Cache for suggestions to avoid redundant API calls
+        const suggestionCache = new Map();
+
+        function scrollToBottom() {
+            chatMessages.scrollTo({
+                top: chatMessages.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        function sanitizeHTML(str) {
+            return DOMPurify.sanitize(str, {
+                ALLOWED_TAGS: [
+                    'p', 'br', 'ul', 'ol', 'li', 'strong', 'em', 'a',
+                    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'table', 'thead',
+                    'tbody', 'tr', 'th', 'td', 'strike', 'code', 'pre'
+                ],
+                ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
+                ADD_ATTR: ['target', 'rel'],
+                ADD_TAGS: ['input'],
+                ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel):|[^a-z]|[a-z+.-]+(?:[^a-z+.-]|[^:]))/i
+            });
+        }
+
+        function validateURL(url) {
+            try {
+                new URL(url);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function cleanResponseText(content) {
+            // Remove common heading patterns and unnecessary sections
+            const patterns = [
+                // Remove main heading patterns
+                /^#+\s*SchemeBot Assistant\s*#*\s*\n*/gmi,
+                /^#+\s*Cyber literacy relations by other private companies\s*#*\s*\n*/gmi,
+                /^#+\s*Government private sector schemes\s*#*\s*\n*/gmi,
+                /^#+\s*Government and Private Sector Schemes\s*#*\s*\n*/gmi,
+
+                // Remove section headers
+                /^###+\s*.+\s*\n*/gm,
+
+                // Remove percentage indicators like "VISIT 1.5%"
+                /^\s*VISIT\s+\d+\.\d+%\s*\n*/gmi,
+
+                // Remove empty lines and excessive whitespace
+                /^\s*[\r\n]+/gm,
+                /\s+$/gm,
+
+                // Remove redundant newlines
+                /\n{3,}/g,
+
+                // Remove specific unwanted phrases
+                /SchemeBot\s+Chat\s*\n*/gmi,
+                /Profila\s*\n*/gmi,
+                /Correlation\s*\n*/gmi,
+                /Logout\s*\n*/gmi
+            ];
+
+            // Apply all patterns
+            for (const pattern of patterns) {
+                content = content.replace(pattern, '');
+            }
+
+            // Trim the final result
+            return content.trim();
+        }
+
+        function formatMarkdown(content) {
+            if (!content) return '';
+            // First clean the content of unwanted headings
+            content = cleanResponseText(content);
+
+            // Normalize line breaks and lists
+            content = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+            content = content.replace(/^\s*-\s+/gm, '* ');
+            content = content.replace(/\n\s*\n/g, '\n\n');
+
+            // Handle malformed links
+            content = content.replace(/\[([^\]]+)\]\[([^\]]+)\]/g, (match, text, url) => {
+                if (validateURL(url)) {
+                    return `[${text}](${url})`;
+                }
+                return text;
+            });
+
+            // Fix common capitalization issues
+            content = content.replace(/\bIT\b/gi, 'It');
+            return content.trim();
+        }
+
+        function renderMarkdown(content, isUser = false) {
+            try {
+                if (isUser) {
+                    return sanitizeHTML(content.replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+                } else {
+                    const formatted = formatMarkdown(content);
+                    const html = converter.makeHtml(formatted);
+                    return sanitizeHTML(html);
+                }
+            } catch (error) {
+                console.error('Markdown rendering error:', error);
+                return sanitizeHTML(content);
+            }
+        }
+
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${isUser ? 'user' : 'bot'}`;
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = `message-content ${isUser ? 'user-message' : 'bot-message'} markdown-content`;
+            contentDiv.innerHTML = renderMarkdown(content, isUser);
+
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            const now = new Date();
+            timeDiv.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            messageDiv.appendChild(contentDiv);
+            messageDiv.appendChild(timeDiv);
+            chatMessages.appendChild(messageDiv);
+
+            scrollToBottom();
+        }
+
+        function showTyping() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+            return typingDiv;
+        }
+
+        function hideTyping() {
+            const typingElement = document.getElementById('typing-indicator');
+            if (typingElement && typingElement.parentNode) {
+                typingElement.parentNode.removeChild(typingElement);
+            }
+        }
+
+        function showError(message) {
+            Toastify({
+                text: message,
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "#ff4444",
+            }).showToast();
+        }
+
+        async function getSchemeRecommendations(userMessage) {
+            try {
+                sendSpinner.style.display = 'block';
+                const response = await fetch('/get_schemes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query: userMessage })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to fetch schemes');
+                }
+
+                return {
+                    response: data.response || 'No schemes found for your query.',
+                    context: data.context || { recent_chat: userMessage }
+                };
+            } catch (error) {
+                console.error('Error fetching schemes:', error);
+                throw error;
+            } finally {
+                sendSpinner.style.display = 'none';
+            }
+        }
+
+        async function fetchAISuggestions(context, botResponse) {
+            const cacheKey = `${context.recent_chat || ''}:${botResponse.slice(0, 100)}`;
+            if (suggestionCache.has(cacheKey)) {
+                return suggestionCache.get(cacheKey);
+            }
+
+            const prompt = `
+    You are SchemeBot, an AI assistant specialized in Indian government schemes. Your task is to generate 4-6 concise, context-aware suggestions for the user to continue the conversation, based on the provided conversation context and the latest bot response. Each suggestion should be a short, actionable phrase (5-10 words) relevant to Indian government schemes, formatted as a markdown list item. 
+    
+    **Requirements**:
+    - Suggestions must be specific, unique, and directly related to the context and bot response.
+    - Avoid generic suggestions (e.g., "More details," "Eligibility criteria") unless no specific options are available.
+    - Do not repeat the bot's response or suggest actions unrelated to Indian government schemes.
+    - Focus on follow-up questions or actions that deepen the conversation, such as asking about specific scheme aspects, related schemes, or user-specific needs.
+    - If the context involves a specific scheme, tailor suggestions to that scheme (e.g., eligibility, application, benefits).
+    - If no specific scheme is mentioned, suggest exploratory questions about user needs or popular schemes.
+    
+    **Conversation Context**:
+    ${context.recent_chat || 'No recent conversation'}
+    
+    **Latest Bot Response**:
+    ${botResponse}
+    
+    **Output Format**:
+    Provide the suggestions as a markdown list:
+    - Suggestion 1
+    - Suggestion 2
+    - ...
+    `;
+
+            const maxRetries = 2;
+            let attempt = 0;
+
+            while (attempt <= maxRetries) {
+                try {
+                    const response = await puter.ai.chat(prompt);
+                    // const response = await puter.ai.chat(prompt, { model: 'claude-3-7-sonnet' });
+
+                    if (!response || !response.message || !response.message.content || !response.message.content[0] || !response.message.content[0].text) {
+                        throw new Error('Invalid response from Suggession Ai');
+                    }
+
+                    const suggestionsText = response.message.content[0].text;
+                    let suggestions = suggestionsText
+                        .split('\n')
+                        .filter(line => line.trim().startsWith('- '))
+                        .map(line => line.replace(/^- /, '').trim())
+                        .filter(suggestion => suggestion.length > 0 && suggestion.length <= 60);
+
+                    suggestions = [...new Set(suggestions)];
+
+                    if (suggestions.length < 4) {
+                        suggestions = suggestions.concat([
+                            'Explore schemes for specific sectors',
+                            'Check scheme application deadlines',
+                            'Find schemes for your state',
+                            'Learn about scheme funding details'
+                        ]).slice(0, 6);
+                    } else if (suggestions.length > 6) {
+                        suggestions = suggestions.slice(0, 6);
+                    }
+
+                    suggestionCache.set(cacheKey, suggestions);
+                    if (suggestionCache.size > 50) {
+                        const firstKey = suggestionCache.keys().next().value;
+                        suggestionCache.delete(firstKey);
+                    }
+
+                    return suggestions;
+                } catch (error) {
+                    console.error(`Attempt ${attempt + 1} failed:`, error);
+                    attempt++;
+                    if (attempt > maxRetries) {
+                        console.error('Max retries reached for AI suggestions');
+                        const fallbackSuggestions = [
+                            'Explore schemes for specific sectors',
+                            'Check scheme application deadlines',
+                            'Find schemes for your state',
+                            'Learn about scheme funding details'
+                        ];
+                        suggestionCache.set(cacheKey, fallbackSuggestions);
+                        return fallbackSuggestions;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt)));
+                }
+            }
+        }
+
+        async function handleUserMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+
+            addMessage(message, true);
+            userInput.value = '';
+
+            const typingElement = showTyping();
+
+            try {
+                const responseData = await getSchemeRecommendations(message);
+                hideTyping();
+
+                addMessage(responseData.response);
+
+                const suggestions = await fetchAISuggestions(responseData.context, responseData.response);
+                const quickRepliesContainer = document.createElement('div');
+                quickRepliesContainer.className = 'quick-replies';
+
+                suggestions.forEach(suggestion => {
+                    const button = document.createElement('button');
+                    button.className = 'quick-reply';
+                    button.textContent = suggestion;
+                    button.addEventListener('click', () => {
+                        userInput.value = suggestion;
+                        handleUserMessage();
+                    });
+                    quickRepliesContainer.appendChild(button);
+                });
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message message-bot';
+                messageDiv.appendChild(quickRepliesContainer);
+                chatMessages.appendChild(messageDiv);
+
+                scrollToBottom();
+            } catch (error) {
+                hideTyping();
+                showError(error.message || 'Sorry, something went wrong. Please try again.');
+            }
+        }
+
+        async function clearChat() {
+            try {
+                const response = await fetch('/clear_chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to clear chat');
+                }
+
+                chatMessages.innerHTML = `
+                    <div class="message message-bot">
+                        <div class="message-content bot-message markdown-content">
+                            Hello! I'm SchemeBot, your AI assistant for finding Indian government schemes. How can I help you today?
+                        </div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                `;
+
+                document.querySelectorAll('.bot-message.markdown-content').forEach(element => {
+                    const rawContent = element.textContent;
+                    element.innerHTML = renderMarkdown(rawContent, false);
+                });
+                showError('Chat history cleared');
+                scrollToBottom();
+            } catch (error) {
+                showError(error.message || 'Failed to clear chat');
+            }
+        }
+
+        function initializeMessages() {
+            document.querySelectorAll('.message-content.markdown-content').forEach(element => {
+                const isUser = element.classList.contains('user-message');
+                const rawContent = element.textContent;
+                element.innerHTML = renderMarkdown(rawContent, isUser);
+            });
+        }
+
+        sendBtn.addEventListener('click', handleUserMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleUserMessage();
+            }
+        });
+
+        clearChatBtn.addEventListener('click', clearChat);
+
+        window.addEventListener('load', () => {
+            initializeMessages();
+            scrollToBottom();
+        });
+    </script>
+</body>
+
+</html>

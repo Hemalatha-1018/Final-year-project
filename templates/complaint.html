@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchemeBot - Complaint & Enquiry Collector</title>
+    <style>
+        :root {
+            --clr-container-bg: rgba(255, 255, 255, 0.1);
+            --clr-container-border: rgba(255, 255, 255, 0.2);
+            --clr-buttons-bg: rgba(255, 255, 255, 0.2);
+            --clr-highlight: #fff;
+            --clr-btn-text: #111;
+            --clr-input: #fff;
+            --clr-input-border: #fff;
+            --clr-input-placeholder: #fff;
+            --clr-submit-bg: #fff;
+            --clr-submit-text: #111;
+            --clr-terms: #fff;
+            --clr-terms-link: #aad8d3;
+            --clr-error: #ff6b6b;
+            --box-shadow-buttons: 0 4px 10px 6px rgba(255, 255, 255, 0.15);
+            --box-shadow-submit: 0 4px 55px rgba(255, 255, 255, 0.2);
+            --bg-body-gradient: linear-gradient(to right, #155799, #159957);
+            --backdrop-form: blur(19px);
+            --clr-bot-bubble: rgba(255, 255, 255, 0.15);
+            --clr-user-bubble: #155799;
+            --clr-chat-bg: rgba(255, 255, 255, 0.05);
+            --clr-sidebar-bg: rgba(255, 255, 255, 0.15);
+            --clr-spinner: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: var(--bg-body-gradient);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            backdrop-filter: brightness(0.9);
+            z-index: -1;
+        }
+
+        .form-container {
+            width: 600px;
+            height: 820px;
+            margin: 20px auto;
+            background-color: var(--clr-container-bg);
+            border: 1px solid var(--clr-container-border);
+            backdrop-filter: var(--backdrop-form);
+            border-radius: 1.5rem;
+            padding: 20px;
+            overflow-y: auto;
+            /* box-shadow: 0 4px 10px 6px rgba(255, 255, 255, 0.15); */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--clr-container-border);
+        }
+
+        .form-header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .form-header h2 {
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .form-content {
+            padding: 20px;
+        }
+
+        .form-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-content label {
+            color: var(--clr-terms);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .form-content input,
+        .form-content select,
+        .form-content textarea {
+            background: transparent;
+            border: 1px solid var(--clr-input-border);
+            border-radius: 0.8rem;
+            padding: 10px;
+            color: var(--clr-input);
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .form-content input::placeholder,
+        .form-content textarea::placeholder {
+            color: var(--clr-input-placeholder);
+            opacity: 0.7;
+        }
+
+        .form-content textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-content button {
+            background: var(--clr-submit-bg);
+            color: var(--clr-submit-text);
+            border: none;
+            padding: 12px;
+            border-radius: 0.8rem;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--box-shadow-submit);
+            transition: background-color 0.2s;
+        }
+
+        .form-content button:hover {
+            background: var(--clr-user-bubble);
+            color: white;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .radio-group label {
+            color: var(--clr-terms);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .error-message {
+            color: var(--clr-error);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .input-error {
+            border-color: var(--clr-error);
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                margin: 20px;
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <img src="https://dl.imgdrop.io/file/aed8b140-8472-4813-922b-7ce35ef93c9e/2025/04/07/logo1178af929228eb91.jpeg" alt="SchemeBot Logo">
+            <h2>Complaint & Enquiry Form</h2>
+        </div>
+        <div class="form-content">
+            <form id="complaintForm" action="https://formspree.io/f/mwpoowkw" method="POST" enctype="multipart/form-data" novalidate>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                <div class="error-message" id="name-error">Name must contain only letters and spaces, minimum 2 characters</div>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <div class="error-message" id="email-error">Please enter a valid email address</div>
+                
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+                <div class="error-message" id="mobile-error">Please enter a valid mobile number (10-12 digits)</div>
+
+                <label for="scheme">Government Scheme</label>
+                <input type="text" id="scheme" name="scheme" placeholder="Enter the name of the scheme" required>
+                <div class="error-message" id="scheme-error">Scheme name must be at least 2 characters long</div>
+
+                <label for="message">Type Your complaint</label>
+                <textarea id="message" name="message" placeholder="Describe your complaint, enquiry" required></textarea>
+                <div class="error-message" id="message-error">Message must be at least 10 characters long</div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('complaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (validateForm()) {
+                this.submit();
+            }
+        });
+
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => validateField(input));
+        });
+
+        function validateField(field) {
+            const errorElement = document.getElementById(`${field.id}-error`);
+            let isValid = true;
+
+            switch (field.id) {
+                case 'name':
+                    const nameRegex = /^[a-zA-Z\s]{2,}$/;
+                    isValid = nameRegex.test(field.value);
+                    break;
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    isValid = emailRegex.test(field.value);
+                    break;
+                case 'mobile':
+                    const mobileRegex = /^\d{10,12}$/;
+                    isValid = mobileRegex.test(field.value);
+                    break;
+                case 'scheme':
+                    isValid = field.value.length >= 2;
+                    break;
+                case 'message':
+                    isValid = field.value.length >= 10;
+                    break;
+            }
+
+            if (!isValid) {
+                field.classList.add('input-error');
+                errorElement.style.display = 'block';
+            } else {
+                field.classList.remove('input-error');
+                errorElement.style.display = 'none';
+            }
+
+            return isValid;
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const fields = ['name', 'email', 'mobile', 'scheme', 'message'];
+
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>

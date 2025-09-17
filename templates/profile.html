@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --clr-container-bg: rgba(255, 255, 255, 0.105);
+            --clr-container-border: rgba(255, 255, 255, 0.196);
+            --clr-buttons-bg: rgba(255, 255, 255, 0.209);
+            --clr-text: #fff;
+            --clr-link: #aad8d3;
+            --clr-terms: #fff;
+            --bg-body-gradient: linear-gradient(to right, #155799, #159957);
+            --backdrop-form: blur(19px);
+            --clr-sidebar-bg: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-body-gradient);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            backdrop-filter: brightness(0.9);
+            z-index: -1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--clr-sidebar-bg);
+            backdrop-filter: var(--backdrop-form);
+            border-right: 1px solid var(--clr-container-border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-header img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .sidebar-header h2 {
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav ul li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-nav ul li a {
+            color: var(--clr-terms);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 0.8rem;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+
+        .sidebar-nav ul li a:hover {
+            background-color: var(--clr-buttons-bg);
+            color: white;
+        }
+
+        .sidebar-nav ul li a svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        /* Profile Container */
+        .container {
+            background-color: var(--clr-container-bg);
+            border: 1px solid var(--clr-container-border);
+            backdrop-filter: var(--backdrop-form);
+            width: min(380px, 95vw);
+            padding: 2rem;
+            border-radius: 2rem;
+            color: var(--clr-text);
+            margin: 20px auto; /* Center horizontally with auto margins */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin: 1rem 0;
+        }
+
+        b {
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--clr-link);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--clr-container-border);
+            }
+            .container {
+                margin-left: 0;
+                width: 95vw;
+                margin: 20px auto; /* Center on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712104.png" alt="SchemeBot">
+            <h2>SchemeBot</h2>
+        </div>
+        <div class="sidebar-nav">
+            <ul>
+                <li><a href="/chat">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Chat
+                </a></li>
+                <li><a href="/profile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Profile
+                </a></li>
+                <li><a href="/complaint">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Complaint
+                </a></li>
+                <li><a href="/logout">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 17L21 12L16 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M21 12H9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Logout
+                </a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Welcome, {{ user.fullname }}</h2>
+        <p><b>Username:</b> {{ user.username }}</p>
+        <p><b>Email:</b> {{ user.email }}</p>
+        <p><b>Phone:</b> {{ user.phone }}</p>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>
